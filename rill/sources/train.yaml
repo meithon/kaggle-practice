@@ -1,0 +1,7 @@
+type: model
+sql: |
+  SELECT *,
+         CASE WHEN Cabin IS NULL OR Cabin = '' THEN NULL
+              ELSE left(Cabin, 1) END AS room_initial,
+         Fare / COUNT(*) OVER (PARTITION BY Ticket) AS fare_per_person
+  FROM read_csv_auto('../data/train.csv')

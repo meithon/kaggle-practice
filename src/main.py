@@ -23,7 +23,9 @@ def load_data(path: Path) -> pd.DataFrame:
     if missing:
         sys.exit(f"エラー: 列が不足しています: {sorted(missing)}")
     if df["Survived"].isnull().any():
-        sys.exit("エラー: Survived に欠損があります (正答率の計算には正解ラベルが必要です)")
+        sys.exit(
+            "エラー: Survived に欠損があります (正答率の計算には正解ラベルが必要です)"
+        )
     return df
 
 

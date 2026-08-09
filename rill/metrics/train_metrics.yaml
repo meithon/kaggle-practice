@@ -1,0 +1,100 @@
+# Metrics view YAML
+# Reference documentation: https://docs.rilldata.com/reference/project-files/metrics-views
+
+version: 1
+type: metrics_view
+
+display_name: Train
+connector: duckdb
+model: train
+
+dimensions:
+  - name: PassengerId
+    display_name: 乗客ID
+    column: PassengerId
+  - name: Survived
+    display_name: 生存
+    column: Survived
+  - name: Pclass
+    display_name: 客室クラス
+    column: Pclass
+  - name: Name
+    display_name: 氏名
+    column: Name
+  - name: Sex
+    display_name: 性別
+    column: Sex
+  - name: Age
+    display_name: 年齢
+    column: Age
+  - name: SibSp
+    display_name: 兄弟姉妹・配偶者の数
+    column: SibSp
+  - name: Parch
+    display_name: 親・子供の数
+    column: Parch
+  - name: Ticket
+    display_name: チケット番号
+    column: Ticket
+  - name: Fare
+    display_name: 運賃
+    column: Fare
+  - name: fare_per_person
+    display_name: 一人あたり運賃
+    column: fare_per_person
+  - name: Cabin
+    display_name: 客室番号
+    column: Cabin
+  - name: room_initial
+    display_name: 客室頭文字
+    column: room_initial
+  - name: Embarked
+    display_name: 乗船港
+    column: Embarked
+
+measures:
+  - name: total_records
+    display_name: 総レコード数
+    expression: COUNT(*)
+    description: ""
+    format_preset: humanize
+  - name: survived_sum
+    display_name: 生存者数
+    expression: SUM(Survived)
+    description: ""
+    format_preset: humanize
+  - name: survival_rate
+    display_name: 生存率
+    expression: AVG(Survived)
+    description: ""
+    format_preset: percentage
+  - name: Age_sum
+    display_name: 年齢の合計
+    expression: SUM(Age)
+    description: ""
+    format_preset: humanize
+  - name: Age_avg
+    display_name: 平均年齢
+    expression: AVG(Age)
+    description: ""
+    format_preset: humanize
+  - name: Fare_sum
+    display_name: 運賃の合計
+    expression: SUM(Fare)
+    description: ""
+    format_preset: humanize
+  - name: Fare_avg
+    display_name: 平均運賃
+    expression: AVG(Fare)
+    description: ""
+    format_preset: humanize
+  - name: SibSp_sum
+    display_name: 兄弟姉妹・配偶者の数の合計
+    expression: SUM(SibSp)
+    description: ""
+    format_preset: humanize
+  - name: Parch_sum
+    display_name: 親・子供の数の合計
+    expression: SUM(Parch)
+    description: ""
+    format_preset: humanize

@@ -1,0 +1,7 @@
+.preview/
+
+/.quarto/
+**/*.quarto_ipynb
+
+nb/*
+!nb/*.ipynb
