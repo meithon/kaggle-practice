@@ -1,5 +1,11 @@
 .preview/
 
+submissions/
+
+results/
+
+__pycache__/
+
 /.quarto/
 **/*.quarto_ipynb
 
