@@ -1,0 +1,7 @@
+set shell := ["bash", "-cu"]
+
+# Kaggle からデータをダウンロードして data/ に配置する
+init:
+    kaggle competitions download -c store-sales-time-series-forecasting -p data
+    unzip -o data/store-sales-time-series-forecasting.zip -d data
+    rm data/store-sales-time-series-forecasting.zip
