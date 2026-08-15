@@ -1,2 +1,7 @@
 # Kaggle データ (just init で再取得可能)
 data/
+
+# quarto preview のビルド成果物
+nb/*.html
+nb/*_files/
+nb/*.live.ipynb

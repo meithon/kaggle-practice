@@ -5,3 +5,17 @@ init:
     kaggle competitions download -c store-sales-time-series-forecasting -p data
     unzip -o data/store-sales-time-series-forecasting.zip -d data
     rm data/store-sales-time-series-forecasting.zip
+
+preview file="nb/some.ipynb":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    source .venv/bin/activate
+    src="{{file}}"
+    dir="$(dirname "$src")"
+    base="$(basename "$src" .ipynb)"
+    live="$dir/$base.live.ipynb"
+    [ -f "$live" ] || cp "$src" "$live"
+    watchexec -w "$dir" -f "**/$base.ipynb" -d 500ms -o queue --postpone -- \
+      python -m nbconvert --to notebook --execute "$src" --output "$base.live" &
+    trap 'kill $(jobs -p) 2>/dev/null || true' EXIT
+    quarto preview "$live" --port 8888

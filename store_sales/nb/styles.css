@@ -1,0 +1,18 @@
+/*
+ * ノートブック出力画像をコンテンツ幅にフィットさせる。
+ *
+ * 背景: Quarto は Jupyter の matplotlib 出力 PNG をネイティブ解像度のまま
+ * width 属性付きで埋め込む (このノートは figsize が大きめなので ~1500-3000px)。
+ * コンテンツカラム幅 (~800px) より広いため .cell-output-display が x-scroll し、
+ * preview で画像が横に溢れて見づらくなる。
+ *
+ * なぜ CSS か: out-width は Knitr 専用で Jupyter セルでは効かない。fig-width も
+ * ドキュメントレベル限定で、明示 figsize= を渡すセルには効かない。CSS が
+ * Jupyter ノートブックで display 幅を制御する正規の方法。
+ *
+ * max-width は width 属性 (presentational) を上書きし、height:auto で縦横比を保つ。
+ */
+.cell-output-display img {
+  max-width: 100%;
+  height: auto;
+}
